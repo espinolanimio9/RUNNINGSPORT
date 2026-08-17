@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUNNINGSPORT | Ropa Deportiva Premium en Paraguay</title>
+    <meta name="description" content="Ropa y calzado deportivo de calidad premium en Paraguay. Remeras, shorts, camperas y zapatillas para atletas que nunca se detienen. Envíos a todo el país.">
+    <meta name="keywords" content="ropa deportiva, zapatillas running, remeras dry fit, tienda deportiva Paraguay">
+    <meta name="theme-color" content="#050505">
+
+    <!-- Open Graph / Redes Sociales -->
+    <meta property="og:title" content="RUNNINGSPORT | Ropa Deportiva Premium">
+    <meta property="og:description" content="Calidad premium, diseño innovador y máximo rendimiento para atletas que nunca se detienen.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="img/hero-bg.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22white%22>⚡</text></svg>">
+
+    <!-- CDN Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: #050505; color: #fff; }
+
+        /* Estilos Generales */
+        .container, .navbar, .hero-content, .footer-grid, .copyright { max-width: 1200px; margin: auto; }
+        section { padding: 80px 20px; }
+        .bg-alt { background: #080808; }
+        .section-title { text-align: center; margin-bottom: 40px; }
+        .section-title h2 { font-size: 2.2rem; margin-bottom: 8px; letter-spacing: 1px; }
+        .section-title p, .hero p, footer p, footer a, .feature p { color: #888; }
+
+        /* Navegación */
+        header { position: fixed; top: 0; width: 100%; height: 75px; background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.08); z-index: 1000; }
+        .navbar { height: 100%; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; gap: 12px; font-size: 1.2rem; font-weight: 800; letter-spacing: 1.5px; }
+        nav { display: flex; gap: 30px; align-items: center; }
+        nav a, footer a { color: #ccc; text-decoration: none; transition: 0.3s; font-size: 0.95rem; }
+        nav a:hover, footer a:hover { color: #fff; }
+
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .cart-btn { position: relative; background: none; border: none; color: #fff; font-size: 1.3rem; cursor: pointer; display: grid; place-items: center; }
+        .cart-badge { position: absolute; top: -8px; right: -10px; background: #fff; color: #000; font-size: 0.65rem; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; }
+        .menu-button { display: none; font-size: 24px; cursor: pointer; background: none; border: none; color: #fff; }
+
+        /* Menú móvil */
+        @media (max-width: 700px) {
+            nav { position: fixed; top: 75px; left: 0; right: 0; background: #0a0a0a; flex-direction: column; align-items: flex-start; gap: 0; max-height: 0; overflow: hidden; transition: max-height 0.35s ease; border-bottom: 1px solid rgba(255,255,255,0.08); }
+            nav.active { max-height: 300px; }
+            nav a { width: 100%; padding: 16px 24px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+            .menu-button { display: block; }
+            .hero h1 { font-size: 2.5rem; }
+            .buttons { flex-direction: column; width: 100%; }
+        }
+
+        /* Hero - IMAGEN DE FONDO DE PORTADA */
+        .hero { 
+            min-height: 100vh; 
+            padding-top: 75px; 
+            display: flex; 
+            align-items: center; 
+            background: linear-gradient(90deg, rgba(5,5,5,0.95), rgba(5,5,5,0.4)), url("img/hero-bg.jpg") center/cover; 
+        }
+        .hero-content { padding: 40px 20px; }
+        .hero-small { color: #aaa; font-size: 0.85rem; letter-spacing: 3px; margin-bottom: 15px; text-transform: uppercase; }
+        .hero h1 { font-size: 3.8rem; line-height: 1.05; max-width: 650px; margin-bottom: 20px; font-weight: 900; letter-spacing: -1px; }
+        .hero p { font-size: 1.1rem; line-height: 1.6; max-width: 550px; margin-bottom: 30px; }
+        .buttons { display: flex; gap: 15px; }
+        .btn { padding: 14px 28px; border: 1px solid #fff; text-decoration: none; color: #fff; font-weight: bold; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; background: none; font-size: 0.95rem; font-family: inherit; }
+        .btn-primary { background: #fff; color: #000; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255,255,255,0.15); }
+        .btn-primary:hover { background: #e0e0e0; }
+
+        /* Grids */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+
+        /* Tarjetas de Producto */
+        .product { background: #121212; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; transition: 0.3s; }
+        .product:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.3); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .product-image { width: 100%; height: 230px; object-fit: cover; display: block; background: #1a1a1a; }
+        .product-info { padding: 18px; }
+        .product-info h3 { font-size: 1.05rem; margin-bottom: 8px; font-weight: 600; }
+        .stars { color: #f39c12; font-size: 0.8rem; margin-bottom: 10px; display: flex; gap: 3px; }
+        .price { font-size: 1.15rem; font-weight: 700; }
+        .product-button { width: 100%; margin-top: 14px; padding: 12px; background: #fff; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .product-button:hover { background: #ccc; }
+        .product-button.added { background: #25D366; color: #fff; }
+        .center-button { text-align: center; margin-top: 40px; }
+
+        /* Categorías */
+        .category { height: 280px; position: relative; border-radius: 12px; overflow: hidden; }
+        .category img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; display: block; }
+        .category:hover img { transform: scale(1.08); }
+        .category-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 22px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); }
+        .category-overlay h3 { font-size: 1.4rem; margin-bottom: 8px; font-weight: 700; }
+        .category-overlay a { color: #fff; text-decoration: none; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+
+        /* Ventajas */
+        .feature { border: 1px solid rgba(255,255,255,0.08); padding: 32px 20px; text-align: center; border-radius: 12px; background: #0c0c0c; transition: 0.3s; }
+        .feature:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-4px); }
+        .feature-icon { font-size: 2rem; color: #fff; margin-bottom: 16px; width: 60px; height: 60px; margin-left: auto; margin-right: auto; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.1); }
+        .feature h3 { margin-bottom: 8px; font-size: 1rem; letter-spacing: 0.5px; }
+
+        /* Footer */
+        footer { background: #000; border-top: 1px solid rgba(255,255,255,0.08); padding: 60px 20px 20px; }
+        footer h3 { margin-bottom: 18px; font-size: 1rem; letter-spacing: 1px; }
+        footer p { line-height: 2; font-size: 0.9rem; }
+        .copyright { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center; color: #555; font-size: 0.85rem; }
+
+        /* Botones Flotantes */
+        .social-buttons { position: fixed; right: 25px; bottom: 25px; display: flex; flex-direction: column; gap: 14px; z-index: 999; }
+        .social { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; color: #fff; text-decoration: none; font-size: 1.4rem; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .whatsapp { background: #25D366; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35); }
+        .whatsapp:hover { transform: scale(1.12) translateY(-3px); box-shadow: 0 10px 25px rgba(37, 211, 102, 0.5); }
+        .instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); box-shadow: 0 6px 20px rgba(214, 36, 159, 0.35); }
+        .instagram:hover { transform: scale(1.12) translateY(-3px); box-shadow: 0 10px 25px rgba(214, 36, 159, 0.5); }
+
+        /* Carrito */
+        .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1998; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        .cart-overlay.active { opacity: 1; pointer-events: auto; }
+        .cart-panel { position: fixed; top: 0; right: -420px; width: 100%; max-width: 400px; height: 100%; background: #0c0c0c; border-left: 1px solid rgba(255,255,255,0.1); z-index: 1999; transition: right 0.35s ease; display: flex; flex-direction: column; }
+        .cart-panel.active { right: 0; }
+        .cart-header { padding: 22px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .cart-header h2 { font-size: 1.2rem; letter-spacing: 1px; }
+        .cart-close { background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; }
+        .cart-items { flex: 1; overflow-y: auto; padding: 10px 20px; }
+        .cart-empty { color: #777; text-align: center; margin-top: 60px; font-size: 0.95rem; }
+        .cart-item { display: flex; gap: 12px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .cart-item img { width: 65px; height: 65px; object-fit: cover; border-radius: 8px; }
+        .cart-item-info { flex: 1; }
+        .cart-item-info h4 { font-size: 0.92rem; margin-bottom: 4px; }
+        .cart-item-price { color: #aaa; font-size: 0.85rem; margin-bottom: 8px; }
+        .qty-controls { display: flex; align-items: center; gap: 10px; }
+        .qty-controls button { width: 24px; height: 24px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); background: none; color: #fff; cursor: pointer; font-size: 0.85rem; line-height: 1; }
+        .cart-item-remove { background: none; border: none; color: #777; cursor: pointer; font-size: 0.9rem; align-self: flex-start; }
+        .cart-item-remove:hover { color: #ff5555; }
+        .cart-footer { padding: 20px; border-top: 1px solid rgba(255,255,255,0.08); }
+        .cart-total { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; }
+        .checkout-btn { width: 100%; padding: 15px; background: #25D366; border: none; border-radius: 8px; color: #fff; font-weight: 700; font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; }
+        .checkout-btn:hover { background: #1fb855; }
+        .checkout-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        @media (max-width: 480px) {
+            .cart-panel { max-width: 100%; right: -100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVEGACIÓN -->
+    <header>
+        <div class="navbar">
+            <div class="logo" style="width: 48px; height: 48px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #000;">
+                <img src="img/img_running.jpeg" alt="RUNNINGSPORT" style="width: 130%; height: 130%; object-fit: cover;">
+            </div>
+            <nav id="navMenu">
+                <a href="#inicio" onclick="closeMenu()">Inicio</a>
+                <a href="#productos" onclick="closeMenu()">Productos</a>
+                <a href="#categorias" onclick="closeMenu()">Categorías</a>
+                <a href="#contacto" onclick="closeMenu()">Contacto</a>
+            </nav>
+            <div class="nav-right">
+                <button class="cart-btn" onclick="openCart()" aria-label="Abrir carrito">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge" id="cartBadge">0</span>
+                </button>
+                <button class="menu-button" onclick="toggleMenu()" aria-label="Abrir menú">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+ <!-- HERO / PORTADA CON IMAGEN AL COSTADO -->
+<section class="hero" id="inicio" style="min-height: 100vh; padding: 100px 20px 40px; display: flex; align-items: center; justify-content: center; background: #050505;">
+    <div style="max-width: 1200px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
+        
+        <!-- Columna de Texto (Izquierda) -->
+        <div class="hero-content" style="flex: 1; min-width: 300px;">
+            <div class="hero-small">SUPERA TUS LÍMITES</div>
+            <h1>ROPA DEPORTIVA<br>PARA CADA DESAFÍO</h1>
+            <p>Calidad premium, diseño innovador y máximo rendimiento para atletas que nunca se detienen.</p>
+            <div class="buttons">
+                <a href="#productos" class="btn btn-primary">VER PRODUCTOS <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#categorias" class="btn">CONOCER MÁS</a>
+            </div>
+        </div>
+
+        <!-- Columna de Imagen (Derecha) -->
+        <div style="flex: 1; min-width: 300px; display: flex; justify-content: center;">
+            <img src="img/img_running.jpeg" alt="RUNNINGSPORT Portada" style="width: 100%; max-width: 480px; height: 420px; object-fit: cover; border-radius: 16px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+        </div>
+
+    </div>
+</section>
+
+    <!-- PRODUCTOS -->
+    <section class="bg-alt" id="productos">
+        <div class="container">
+            <div class="section-title">
+                <h2>PRODUCTOS DESTACADOS</h2>
+                <p>Equipamiento diseñado para mejorar tu rendimiento</p>
+            </div>
+            <div class="product-grid" id="productGrid"></div>
+            <div class="center-button">
+                <button class="btn" onclick="pedirCatalogoCompleto()">VER TODOS LOS PRODUCTOS</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORÍAS -->
+    <section id="categorias">
+        <div class="container">
+            <div class="section-title">
+                <h2>CATEGORÍAS</h2>
+                <p>Encuentra el equipamiento que necesitas</p>
+            </div>
+            <div class="category-grid">
+
+                <div class="category">
+                    <img src="img/img3.jpeg" alt="Ropa deportiva para hombres" loading="lazy">
+                    <div class="category-overlay">
+                        <h3>HOMBRES</h3>
+                        <a href="#productos">VER MÁS <i class="fa-solid fa-arrow-right-long"></i></a>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <img src="img/img1.jpeg" alt="Ropa deportiva para mujeres" loading="lazy">
+                    <div class="category-overlay">
+                        <h3>DAMAS</h3>
+                        <a href="#productos">VER MÁS <i class="fa-solid fa-arrow-right-long"></i></a>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <img src="img/img5.jpeg" alt="Calzado Deportivo" loading="lazy">
+                    <div class="category-overlay">
+                        <h3>CALZADO</h3>
+                        <a href="#productos">VER MÁS <i class="fa-solid fa-arrow-right-long"></i></a>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <img src="img/img4.jpeg" alt="Sets Deportivos Damas" loading="lazy">
+                    <div class="category-overlay">
+                        <h3>SETS DEPORTIVOS DAMAS</h3>
+                        <a href="#productos">VER MÁS <i class="fa-solid fa-arrow-right-long"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- VENTAJAS -->
+    <section class="bg-alt">
+        <div class="container">
+            <div class="section-title">
+                <h2>¿POR QUÉ ELEGIRNOS?</h2>
+            </div>
+            <div class="feature-grid">
+                <div class="feature">
+                    <div class="feature-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                    <h3>ENVÍOS RÁPIDOS</h3>
+                    <p>Enviamos tus productos de forma rápida y segura.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>PRODUCTOS ORIGINALES</h3>
+                    <p>Productos garantizados y de excelente calidad.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon"><i class="fa-solid fa-gem"></i></div>
+                    <h3>CALIDAD PREMIUM</h3>
+                    <p>Materiales seleccionados para máximo rendimiento.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon"><i class="fa-solid fa-headset"></i></div>
+                    <h3>ATENCIÓN PERSONALIZADA</h3>
+                    <p>Estamos disponibles para ayudarte.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contacto">
+        <div class="footer-grid">
+            <div>
+                <div class="logo" style="width: 55px; height: 55px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #000;">
+                    <img src="img/img_running.jpeg" alt="RUNNINGSPORT" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.8);">
+                </div>
+            </div>
+            <div>
+                <h3>NAVEGACIÓN</h3>
+                <p><a href="#inicio">Inicio</a></p>
+                <p><a href="#productos">Productos</a></p>
+                <p><a href="#categorias">Categorías</a></p>
+                <p><a href="#contacto">Contacto</a></p>
+            </div>
+            <div>
+                <h3>INFORMACIÓN</h3>
+                <p><a href="#">Envíos</a></p>
+                <p><a href="#">Cambios y devoluciones</a></p>
+                <p><a href="#">Términos y condiciones</a></p>
+                <p><a href="#">Preguntas frecuentes</a></p>
+            </div>
+            <div>
+                <h3>CONTACTO</h3>
+                <p><i class="fa-solid fa-phone" style="margin-right: 8px;"></i> +595 993 527 975</p>
+                <p><i class="fa-solid fa-envelope" style="margin-right: 8px;"></i> runningsport@gmail.com</p>
+                <p><i class="fa-solid fa-location-dot" style="margin-right: 8px;"></i> Ruta 10 las residentas casi Kurupa´yty-Capiibary, Paraguay</p>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 RUNNINGSPORT. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- CARRITO LATERAL -->
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+    <aside class="cart-panel" id="cartPanel">
+        <div class="cart-header">
+            <h2>TU CARRITO</h2>
+            <button class="cart-close" onclick="closeCart()" aria-label="Cerrar carrito"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+            <div class="cart-total"><span>Total</span><span id="cartTotal">Gs. 0</span></div>
+            <button class="checkout-btn" id="checkoutBtn" onclick="checkoutWhatsApp()">
+                <i class="fa-brands fa-whatsapp"></i> FINALIZAR PEDIDO POR WHATSAPP
+            </button>
+        </div>
+    </aside>
+
+    <!-- BOTONES REDES SOCIALES -->
+    <div class="social-buttons">
+        <a href="https://wa.me/595993527975" target="_blank" class="social whatsapp" title="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="https://instagram.com/" target="_blank" class="social instagram" title="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        const WHATSAPP_NUMBER = "595993527975";
+
+        /* ---------- LISTA DE PRODUCTOS ---------- */
+        const products = [
+            { id: 1, name: "Hoodie Caballero",      price: 120000, src: "img/img_campera.jpeg" },
+            { id: 2, name: "Conjunto Damas",       price: 220000, src: "img/img_conjunto abrigo mujer.jpeg" },
+            { id: 3, name: "Remeras Deportivas", price: 120000, src: "img/img_recolecta.jpeg" },
+            { id: 4, name: "Hoddie Paraguay",   price: 220000, src: "img/paraguay campera.jpeg" },
+            { id: 5, name: "Conjuntos / Sets Deportivos Damas",     price: 120000, src: "img/img_conjunto mujer.jpeg" }
+        ];
+
+        /* ---------- Formato de moneda ---------- */
+        function formatGs(n) {
+            return "Gs. " + n.toLocaleString("es-PY");
+        }
+
+        /* ---------- Render de productos ---------- */
+        function renderProducts() {
+            const grid = document.getElementById("productGrid");
+            grid.innerHTML = products.map(p => `
+                <div class="product">
+                    <img class="product-image" src="${p.src}" alt="${p.name}" loading="lazy">
+                    <div class="product-info">
+                        <h3>${p.name}</h3>
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="price">${formatGs(p.price)}</div>
+                        <button class="product-button" id="btn-${p.id}" onclick="addToCart(${p.id})">
+                            <i class="fa-solid fa-bag-shopping"></i> COMPRAR
+                        </button>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        /* ---------- Menú móvil ---------- */
+        function toggleMenu() {
+            document.getElementById("navMenu").classList.toggle("active");
+        }
+        function closeMenu() {
+            document.getElementById("navMenu").classList.remove("active");
+        }
+
+        /* ---------- Carrito ---------- */
+        let cart = JSON.parse(localStorage.getItem("runningsport_cart") || "[]");
+
+        function saveCart() {
+            localStorage.setItem("runningsport_cart", JSON.stringify(cart));
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.qty += 1;
+            } else {
+                cart.push({ id: product.id, name: product.name, price: product.price, src: product.src, qty: 1 });
+            }
+            saveCart();
+            renderCart();
+
+            const btn = document.getElementById(`btn-${id}`);
+            if (btn) {
+                const original = btn.innerHTML;
+                btn.classList.add("added");
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> AGREGADO';
+                setTimeout(() => {
+                    btn.classList.remove("added");
+                    btn.innerHTML = original;
+                }, 1200);
+            }
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) {
+                cart = cart.filter(i => i.id !== id);
+            }
+            saveCart();
+            renderCart();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(i => i.id !== id);
+            saveCart();
+            renderCart();
+        }
+
+        function cartTotal() {
+            return cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+        }
+
+        function cartCount() {
+            return cart.reduce((sum, i) => sum + i.qty, 0);
+        }
+
+        function renderCart() {
+            const container = document.getElementById("cartItems");
+            const badge = document.getElementById("cartBadge");
+            const totalEl = document.getElementById("cartTotal");
+            const checkoutBtn = document.getElementById("checkoutBtn");
+
+            badge.textContent = cartCount();
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p class="cart-empty">Tu carrito está vacío.<br>¡Agregá algún producto!</p>';
+                checkoutBtn.disabled = true;
+            } else {
+                container.innerHTML = cart.map(i => `
+                    <div class="cart-item">
+                        <img src="${i.src}" alt="${i.name}">
+                        <div class="cart-item-info">
+                            <h4>${i.name}</h4>
+                            <div class="cart-item-price">${formatGs(i.price)}</div>
+                            <div class="qty-controls">
+                                <button onclick="changeQty(${i.id}, -1)" aria-label="Restar">−</button>
+                                <span>${i.qty}</span>
+                                <button onclick="changeQty(${i.id}, 1)" aria-label="Sumar">+</button>
+                            </div>
+                        </div>
+                        <button class="cart-item-remove" onclick="removeFromCart(${i.id})" aria-label="Eliminar"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `).join("");
+                checkoutBtn.disabled = false;
+            }
+
+            totalEl.textContent = formatGs(cartTotal());
+        }
+
+        function openCart() {
+            document.getElementById("cartPanel").classList.add("active");
+            document.getElementById("cartOverlay").classList.add("active");
+        }
+        function closeCart() {
+            document.getElementById("cartPanel").classList.remove("active");
+            document.getElementById("cartOverlay").classList.remove("active");
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) return;
+            let msg = "¡Hola RUNNINGSPORT! Quiero hacer este pedido:\n\n";
+            cart.forEach(i => {
+                msg += `• ${i.name} x${i.qty} — ${formatGs(i.price * i.qty)}\n`;
+            });
+            msg += `\nTotal: ${formatGs(cartTotal())}`;
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+            window.open(url, "_blank");
+        }
+
+        function pedirCatalogoCompleto() {
+            const msg = "¡Hola! Me gustaría ver el catálogo completo de productos.";
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+            window.open(url, "_blank");
+        }
+
+        /* ---------- Inicialización ---------- */
+        renderProducts();
+        renderCart();
+    </script>
+</body>
+</html>
